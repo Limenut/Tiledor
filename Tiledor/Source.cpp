@@ -517,5 +517,3 @@ int main()
 
 	close();
 }
-
-//päivityspöh

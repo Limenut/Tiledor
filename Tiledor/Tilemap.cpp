@@ -87,8 +87,15 @@ void Tilemap::update()
 		}
 	}*/
 
+	
+	if (fullTex) SDL_DestroyTexture(fullTex); 
+	
+
 	SDL_Texture *tempTex = SDL_CreateTexture(mainWindow.ren, SDL_PIXELFORMAT_RGBX8888, SDL_TEXTUREACCESS_TARGET, mainWindow.area.w, mainWindow.area.h);
 	SDL_SetRenderTarget(mainWindow.ren, tempTex);
+
+	SDL_SetRenderDrawColor(mainWindow.ren, 0, 0, 0, 255);
+	SDL_RenderClear(mainWindow.ren);
 
 	for (int i = 0; i < mainWindow.area.h / tileRes; i++)
 	{

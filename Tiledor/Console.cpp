@@ -203,9 +203,6 @@ void Console::updateTexture()
 	{
 		auto surf = TTF_RenderText_Blended(font, lines[i].c_str(), color);
 
-		//tex = SDL_CreateTextureFromSurface(mainWindow.ren, surf);
-		//return;
-
 		textRect.h += lineHeight;
 		if (surf->w > textRect.w) textRect.w = surf->w;
 
@@ -282,6 +279,7 @@ void Console::addLine(const string& _line)
 void Console::clear()
 {
 	lines.clear();
+	SDL_DestroyTexture(tex);
 	tex = nullptr;
 }
 
