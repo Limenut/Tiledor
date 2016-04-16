@@ -38,8 +38,6 @@ public:
 
 	vector<string> lines;
 
-	//int textHeight;
-	//int textWidth;
 	int lineHeight;
 	unsigned selection = 0;
 };

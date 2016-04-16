@@ -31,7 +31,6 @@ void Console::open()
 	selection = 0;
 	isOpen = true;
 	updateTexture();
-	//updateSave();
 }
 
 void Console::close()
@@ -86,14 +85,10 @@ SDL_Keycode Console::handleEvents()
 			//enter: konsoli sammutetaan
 			if (e.key.keysym.sym == SDLK_RETURN)
 			{
-				//gTilemap.saveFile(input + ".map");
-				//console.close();
-
 				return SDLK_RETURN;
 			}
 			if (e.key.keysym.sym == SDLK_ESCAPE)
 			{
-				//console.close();
 				return SDLK_ESCAPE;
 			}
 			if (e.key.keysym.sym == SDLK_UP)
@@ -128,61 +123,6 @@ SDL_Keycode Console::handleEvents()
 	return 0;
 }
 
-
-/*void Console::updateTexture()
-{
-	int lineHeight = TTF_FontLineSkip(font);
-
-	std::vector<SDL_Surface*> lineSurfs;
-
-	SDL_Rect rect;
-	rect.h = rect.w = 0;
-	rect.x = rect.y = 0;
-
-	for (unsigned i = 0; i < lines.size(); i++)
-	{
-		auto surf = TTF_RenderText_Solid(font, lines[i].c_str(), color);
-
-		rect.h += lineHeight;
-		if (surf->w > rect.w) rect.w = surf->w;
-
-		lineSurfs.push_back(surf);
-	}
-
-	auto finalSurf = SDL_CreateRGBSurface(
-		0,
-		rect.w,
-		rect.h,
-		32,
-		0xff000000,
-		0x00ff0000,
-		0x0000ff00,
-		0x000000ff
-		);
-
-	for (unsigned i = 0; i < lines.size(); i++)
-	{
-		rect.w = fontSize*lines[i].length();
-		auto surf = TTF_RenderText_Solid(font, lines[i].c_str(), color);
-		tex = SDL_CreateTextureFromSurface(mainWindow.ren, surf);
-		//SDL_BlitSurface(fullSurf, &rect, surf, NULL);
-		SDL_BlitSurface(surf, nullptr, fullSurf, nullptr);
-		SDL_FreeSurface(surf);
-		rect.y += fontSize;
-		
-	}
-	//fullSurf = TTF_RenderText_Solid(font, lines[0].c_str(), { 0xFF, 0xFF, 0xFF, 0xFF });
-	
-
-	tex = SDL_CreateTextureFromSurface(mainWindow.ren, fullSurf);
-
-	textRect.w = fullSurf->w;
-	textRect.h = fullSurf->h;
-
-	//SDL_FreeSurface(surf);
-	SDL_FreeSurface(fullSurf);
-}*/
-
 void Console::updateTexture()
 {
 	if (!font)
@@ -191,12 +131,9 @@ void Console::updateTexture()
 	}
 
 	std::vector<SDL_Surface*> lineSurfs;
-	//std::string line;
 
 	lineHeight = TTF_FontLineSkip(font);
 
-	//int textHeight = 0;
-	//int textWidth = 0;
 	textRect.w = textRect.h = 0;
 
 	for (unsigned i = 0; i < lines.size(); i++)
@@ -258,8 +195,6 @@ void Console::updateSave()
 	SDL_Surface *surf = NULL;
 
 	text = "Save as: " + input + ".map";
-
-	//updateTexture();
 
 	surf = TTF_RenderText_Solid(font, text.c_str(), { 0xFF, 0xFF, 0xFF, 0xFF });
 	tex = SDL_CreateTextureFromSurface(mainWindow.ren, surf);

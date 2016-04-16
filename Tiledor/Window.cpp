@@ -44,8 +44,8 @@ bool Window::init(const string &_name)
 		return false;
 	}
 
+	//store window in windowMap
 	id = SDL_GetWindowID(win);
-
 	windowMap[id] = this;
 
 	//Initialize renderer color
@@ -60,16 +60,12 @@ void Window::handleEvents(SDL_Event *e)
 	case SDL_WINDOWEVENT_ENTER:
 		SDL_RaiseWindow(win);
 		mouseFocus = true;
-		//selector.winIndex = id;
-		//selector.makeTex();
 		break;
 	case SDL_WINDOWEVENT_LEAVE:
 		mouseFocus = false;
 		break;
 	case SDL_WINDOWEVENT_FOCUS_GAINED:
 		keyFocus = true;
-		//selector.winIndex = id;
-		//selector.makeTex();
 		break;
 	case SDL_WINDOWEVENT_FOCUS_LOST:
 		keyFocus = false;

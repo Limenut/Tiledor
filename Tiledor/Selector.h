@@ -2,20 +2,17 @@
 
 #include <SDL2/SDL.h>
 
+//a "cursor" for selecting tiles on either window
 class Selector
 {
 public:
 	Selector();
 	~Selector();
 	void init(Uint32 _id);
-	void makeTex();
-	void makeTex2();
+	void makeTex();	//draw the cursor
 
-	//Window *currentWin;
 	char winIndex;
 
-	//int x;
-	//int y;
 	SDL_Rect rect;
 	SDL_Texture *tex;
 	int currentTile;

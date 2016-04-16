@@ -14,22 +14,13 @@
 
 using namespace std;
 
-//extern SDL_Window* gWindow;
-//extern SDL_Renderer* gRenderer;
-
-//extern SDL_Window* tileWindow;
-//extern SDL_Renderer* tileRenderer;
-
 extern map<Uint32, Window*> windowMap;
 
 extern Window mainWindow;
 extern Window tileWindow;
-//extern vector<SDL_Texture*> texturemap;
 extern Texturemap texturemap;
 
 extern Tilemap gTilemap;
-
-//extern Selector selector;
 
 extern Console console;
 

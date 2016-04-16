@@ -31,6 +31,9 @@ void Texturemap::makeMap(const string &_file, int tileRes)
 		return;
 	}
 
+	//save whole image
+	fullTex = SDL_CreateTextureFromSurface(tileWindow.ren, fullSurf);
+
 
 	SDL_Rect fullRect;
 	fullRect.x = fullRect.y = 0;
@@ -47,6 +50,7 @@ void Texturemap::makeMap(const string &_file, int tileRes)
 	rect.w = rect.h = tileRes;
 	rect.x = rect.y = 0;
 
+	//chop into tiles
 	for (rect.y = 0; rect.y < fullRect.h; rect.y += tileRes)
 	{
 		for (rect.x = 0; rect.x < fullRect.w; rect.x += tileRes)
@@ -57,7 +61,6 @@ void Texturemap::makeMap(const string &_file, int tileRes)
 		}
 	}
 
-	fullTex = SDL_CreateTextureFromSurface(tileWindow.ren, fullSurf);
 
 	SDL_FreeSurface(surf);
 	SDL_FreeSurface(fullSurf);

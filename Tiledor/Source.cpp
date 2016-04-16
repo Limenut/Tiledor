@@ -103,54 +103,6 @@ SDL_Texture* loadBitmap(const string &_file)
 	return tex;
 }
 
-/*void makeTexmap(const string &_file, int tileRes)
-{
-	texturemap.clear();
-
-	if (!gRenderer)
-	{
-		cout << "No renderer! Can't load texture!" << endl;
-		return;
-	}
-
-	cout << "Loading " << _file.c_str() << "... ";
-
-	SDL_Surface *fullSurf = IMG_Load(_file.c_str());
-	if (!fullSurf)
-	{
-		cout << "Loading failed" << endl;
-		return;
-	}
-
-
-	SDL_Rect fullRect;
-	fullRect.x = fullRect.y = 0;
-	fullRect.w = fullSurf->w;
-	fullRect.h = fullSurf->h;
-
-
-	SDL_Texture *tex;
-	SDL_Surface *surf = SDL_CreateRGBSurface(0,tileRes,tileRes, 24, 0, 0, 0, 0);
-	SDL_Rect rect;
-	rect.w = rect.h = tileRes;
-	rect.x = rect.y = 0;
-
-	for (rect.y = 0; rect.y < fullRect.h; rect.y += tileRes)
-	{
-		for (rect.x = 0; rect.x < fullRect.w; rect.x += tileRes)
-		{
-			SDL_BlitSurface(fullSurf, &rect, surf, NULL);
-			tex = SDL_CreateTextureFromSurface(gRenderer, surf);
-			texturemap.push_back(tex);
-		}
-	}
-
-	SDL_FreeSurface(surf);
-	SDL_FreeSurface(fullSurf);
-
-	cout << "Ok" << endl;
-}*/
-
 void handleEvents()
 {
 	SDL_Event e;
@@ -305,8 +257,6 @@ bool conNew()
 	int vertiTiles = 0;
 	int horiTiles = 0;
 	string bitMapName;
-	//vector<char> tiles;
-
 
 	console.clear();
 
@@ -432,7 +382,6 @@ bool conLoad()
 
 void conSave()
 {
-	
 	console.selection = 0;
 	console.highlight();
 	console.open();
@@ -471,10 +420,6 @@ int main()
 
 	SDL_SetWindowSize(tileWindow.win, 1,1);
 	conBegin();
-	
-
-	//gTilemap.loadFile("mappi.map");
-	
 
 	texturemap.makeMap(gTilemap.bitMapName, gTilemap.tileRes);
 	SDL_SetWindowSize(tileWindow.win, texturemap.rect.w, texturemap.rect.h);
@@ -488,7 +433,6 @@ int main()
 
 	while (!quit)
 	{
-		//if (console.isOpen) console.handleEvents();
 		handleEvents();
 		
 
@@ -499,8 +443,6 @@ int main()
 
 		//render selection
 		SDL_RenderCopy(mainWindow.ren, mainWindow.sel.tex, NULL, &mainWindow.sel.rect);
-
-		//if (console.isOpen) console.render();
 
 		SDL_RenderPresent(mainWindow.ren);
 

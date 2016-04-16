@@ -68,35 +68,19 @@ void Tilemap::saveFile(const string &_file)
 }
 
 void Tilemap::update()
-{
-	/*vector<char>::iterator it = tiles.begin();
-	for (int i = 0; i < gTilemap.vertiTiles; i++)
-	{
-		for (int j = 0; j < gTilemap.horiTiles; j++)
-		{
-			SDL_Texture *tex;
-			tex = texturemap.map[*it];
-
-			++it;
-
-			SDL_Rect rect;
-			rect.y = i*gTilemap.tileRes;
-			rect.x = j*gTilemap.tileRes;
-			rect.w = rect.h = gTilemap.tileRes;
-			SDL_RenderCopy(gRenderer, tex, NULL, &rect);
-		}
-	}*/
-
-	
+{	
 	if (fullTex) SDL_DestroyTexture(fullTex); 
 	
-
+	//render to tempTex instead of window
+	//tempTex is needed because it can't be rendered??
 	SDL_Texture *tempTex = SDL_CreateTexture(mainWindow.ren, SDL_PIXELFORMAT_RGBX8888, SDL_TEXTUREACCESS_TARGET, mainWindow.area.w, mainWindow.area.h);
 	SDL_SetRenderTarget(mainWindow.ren, tempTex);
 
+	//clear texture
 	SDL_SetRenderDrawColor(mainWindow.ren, 0, 0, 0, 255);
 	SDL_RenderClear(mainWindow.ren);
 
+	//copy tiles to texture according to window offset
 	for (int i = 0; i < mainWindow.area.h / tileRes; i++)
 	{
 		int y = i + mainWindow.offsetY;

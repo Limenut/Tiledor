@@ -2,6 +2,7 @@
 
 #include <SDL2\SDL.h>
 
+//each window has its own renderer and event handler for window-related events
 class Window
 {
 public:
